@@ -1,0 +1,149 @@
+:root {
+  /* Backgrounds */
+  --bg-main: #121212;
+  --bg-secondary: #1E1E1E;
+
+  /* Text */
+  --text-primary: #E0E0E0;
+  --text-secondary: #B0B0B0;
+
+  /* Accents */
+  --accent-primary: #4DB6AC;  /* teal */
+  --accent-secondary: #FF80AB; /* pink */
+  --error: #EF5350;
+  --success: #81C784;
+}
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    font-family: 'SourceSerifPro', Georgia, 'Times New Roman', serif;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* full viewport height */
+    margin: 0;
+}
+
+/* Links */
+a { 
+  color: var(--accent-primary); /* teal */
+  text-decoration: none; 
+}
+a:hover { 
+  text-decoration: none; 
+}
+a:active { 
+  color: var(--accent-secondary); /* pink when pressed */
+}
+
+/* Buttons */
+button {
+  background-color: var(--accent-primary); /* teal */
+  color: var(--bg-main);
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-right: 0.5rem;
+  transition: background-color 0.2s;
+}
+button:active {
+  background-color: var(--accent-secondary); /* pink when pressed */
+}
+button.secondary {
+  background-color: var(--accent-secondary); /* default pink */
+}
+button.secondary:active {
+  background-color: var(--accent-primary); /* switch to teal when pressed */
+}
+
+.container {
+  max-width: 800;   /* maximum width on large screens */
+  width: 90%;         /* scales down on smaller screens */
+  margin: 0 auto;     /* horizontally centers container */
+  padding: 0 1rem;    /* optional: extra padding on very small screens */
+}
+
+@media (min-width: 1200px) {
+  .container {
+    width: 50%;
+  }
+}
+
+footer {
+  padding: 1.5rem 0;
+  text-align: center; /* center content */
+}
+
+.footer-container {
+  display: inline-block; /* shrink container to fit content */
+}
+
+.footer-links {
+  list-style: none;
+  display: inline-flex;   /* horizontal layout, still inline for centering */
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+}
+
+.footer-links a {
+  color: var(--text-secondary);
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  color: var(--accent-secondary);
+}
+
+.content {
+  flex: 1; /* pushes footer to bottom if content is short */
+}
+
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 10%;
+	/* margin-bottom: 2.5%; */
+}
+
+header a{
+    color: var(--text-primary);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+header a:hover {
+    color: var(--accent-primary);
+}
+
+header a:active {
+    color: var(--accent-secondary);
+}
+
+.nav_links{
+    list-style: none;
+}
+
+.nav_links li{
+    display: inline-block;
+    
+}
+
+.nav_links li a{
+    color: var(--text-primary);
+    transition: all 0.3s ease 0s;
+    padding: 0 20px;
+}
+
+.nav_links li a:hover{
+    color: var(--accent-primary);
+}
+
+.nav_links li a:active{
+    color: var(--accent-secondary);
+}
