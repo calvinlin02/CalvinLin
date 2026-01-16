@@ -660,3 +660,19 @@ strong {
   transform: translateX(-50%);
   white-space: nowrap;
 }
+
+.email-link {
+  color: var(--text-primary);          /* link color */
+  text-decoration: none;    /* remove underline */
+  font-weight: 500;         /* medium weight */
+  font-family: 'Source Sans Pro', sans-serif; /* optional */
+  transition: color 0.2s ease;
+}
+
+.email-link:hover {
+  color: var(--accent-primary);           /* darker on hover */
+}
+
+.email-link:active {
+  color: var(--accent-secondary);           /* darker on hover */
+}
