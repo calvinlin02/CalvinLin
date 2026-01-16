@@ -14,6 +14,10 @@
   --success: #81C784;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     background-color: var(--bg-main);
     color: var(--text-primary);
@@ -25,7 +29,6 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh; /* full viewport height */
-    margin: 0;
 }
 
 /* Links */
@@ -67,6 +70,12 @@ button.secondary:active {
   margin: 0 auto;     /* horizontally centers container */
   padding: 0 1rem;    /* optional: extra padding on very small screens */
 }
+.text-container {
+  width: 80%;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
 
 @media (min-width: 1200px) {
   .container {
@@ -108,13 +117,15 @@ header{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 30px 10%;
+    padding: 1vh 10%;
 	/* margin-bottom: 2.5%; */
 }
 
 header a{
     color: var(--text-primary);
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+    font-weight: 700; 
+    font-size: 1.5rem;   
 }
 
 header a:hover {
@@ -146,4 +157,522 @@ header a:active {
 
 .nav_links li a:active{
     color: var(--accent-secondary);
+}
+
+.image-frame {
+  width: 100%;
+  /* remove aspect-ratio */
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.image-frame img {
+  width: 100%;
+  height: auto;        /* scale naturally */
+  object-fit: contain;  /* preserves full image */
+  display: block;
+  object-position: center;
+}
+
+.image-frame-full {
+  width: 100%;
+  overflow: visible;   /* allow full image to show */
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.image-frame-full img {
+  width: 100%;
+  height: auto;        /* scale naturally */
+  max-height: 80vh;    /* optional: prevent huge images */
+  object-fit: contain;  /* keep full frame visible */
+  display: block;
+  object-position: center;
+}
+
+.image-row {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(240px, 1fr);
+  gap: 1rem;
+  /* margin-bottom: 1rem; */
+}
+
+/* Responsive: stack images vertically on smaller screens */
+@media (max-width: 768px) {
+  .image-row {
+    grid-auto-flow: row;
+    grid-auto-columns: 1fr;
+  }
+}
+
+.image-row .image-frame {
+  aspect-ratio: 16 / 9;
+}
+
+.quote-row {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(240px, 1fr);
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* Responsive: stack vertically on smaller screens */
+@media (max-width: 768px) {
+  .quote-row {
+    grid-auto-flow: row;
+    grid-auto-columns: 1fr;
+  }
+}
+
+.quote {
+  /* background-color: var(--bg-secondary);   */
+  padding: 0 1.5rem 1.5rem;
+  color: var(--text-primary);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 1rem;
+}
+
+/* ===== Name Card ===== */
+
+.name-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.name {
+  padding: 1.5rem;
+  color: var(--text-primary);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 1rem;
+}
+
+/* ===== Image Frame ===== */
+
+/* .image-frame {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.image-frame img {
+  width: 100%;
+  display: block;
+  transition: transform 0.4s ease;
+} */
+
+/* ===== Overlay ===== */
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* ===== Overlay Text ===== */
+
+.overlay-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  transform: translateY(12px);
+  transition: transform 0.3s ease;
+}
+
+.overlay-text h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  color: #fff;
+  margin: 0;
+  text-align: center;
+}
+
+.project-date {
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* ===== Static Meta ===== */
+
+.project-meta {
+  margin-top: 0.6rem;
+}
+
+.project-meta h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.project-meta p {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  margin: 0.2rem 0 0;
+}
+
+/* ===== Hover / Focus ===== */
+/* ===== Project Card ===== */
+
+/* ===== Project Card ===== */
+.project-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  max-width: 100%;
+  border-radius: 12px;      /* rounded corners */
+  overflow: hidden;          /* clip scaled image */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+/* Image Frame */
+.project-card .image-frame {
+  position: relative;
+  width: 100%;
+  overflow: hidden;          /* clip scaling image */
+  border-radius: inherit;     /* match card rounding */
+}
+
+/* Image Layer */
+.project-card img {
+  width: 100%;
+  height: auto;              /* keep aspect ratio */
+  object-fit: cover;
+  display: block;
+  border-radius: inherit;
+  transition: transform 0.3s ease;
+  transform-origin: center;
+}
+
+/* Overlay Layer */
+.project-card .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  background: rgba(0,0,0,0.4);
+  border-radius: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Overlay Text */
+.project-card .overlay-text {
+  color: #fff;
+  text-align: center;
+  transform: translateY(20px);
+  transition: transform 0.3s ease;
+  position: relative;
+  z-index: 2;
+  border-radius: inherit;
+}
+
+.project-card .overlay-text h2 {
+  margin: 0 0 0.25rem 0;
+  font-size: 1.5rem;
+}
+
+.project-card .overlay-text .project-date {
+  font-size: 1rem;
+  opacity: 0.9;
+}
+
+/* Hover / Focus Effects */
+.project-card:hover img,
+.project-card:focus-visible img {
+  transform: scale(1.03);
+}
+
+.project-card:hover .overlay,
+.project-card:focus-visible .overlay {
+  opacity: 1;
+}
+
+.project-card:hover .overlay-text,
+.project-card:focus-visible .overlay-text {
+  transform: translateY(0);
+}
+
+/* Accessibility */
+.project-card:focus-visible {
+  outline: 2px solid #000;
+  outline-offset: 4px;
+}
+
+/* ===== Reduced Motion ===== */
+
+@media (prefers-reduced-motion: reduce) {
+  .overlay {
+    display: none;
+  }
+
+  .image-frame img {
+    transition: none;
+  }
+}
+
+/* ===== Spacing Utilities ===== */
+
+.spacer-xs { height: 0.5rem; }
+.spacer-sm { height: 1rem; }
+.spacer-md { height: 2rem; }
+.spacer-lg { height: 4rem; }
+.spacer-xl { height: 6rem; }
+
+.spacer {
+  height: clamp(1.5rem, 4vw, 4rem);
+}
+
+strong {
+  color: var(--accent-secondary);
+}
+
+/* =========================
+   A4 Carousel
+   ========================= */
+
+.carousel-a4 {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  margin: 2rem 0;
+}
+
+/* viewport */
+.carousel-a4-viewport {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 12px;
+  background-color: #1f1f1f;
+}
+
+/* sliding track */
+.carousel-a4-track {
+  display: flex;
+  height: 100%;
+  transition: transform 0.4s ease;
+}
+
+/* slide */
+.carousel-a4-slide {
+  flex: 0 0 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* image */
+.carousel-a4-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* no cropping */
+  display: block;
+}
+
+/* buttons */
+.carousel-a4-btn {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  color: #444;
+  user-select: none;
+}
+
+.carousel-a4-btn:hover {
+  color: #000;
+}
+
+/* =========================
+   Print / PDF fallback
+   ========================= */
+
+@media print {
+  .carousel-a4-btn {
+    display: none;
+  }
+
+  .carousel-a4-track {
+    transform: none !important;
+    display: block;
+  }
+
+  .carousel-a4-slide {
+    margin-bottom: 1rem;
+    page-break-inside: avoid;
+  }
+
+  .carousel-a4-viewport {
+    aspect-ratio: auto;
+    overflow: visible;
+  }
+}
+
+/* =========================
+   Figma Embed Frame
+   ========================= */
+
+.figma-frame {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #1f1f1f;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  margin: 2rem 0;
+  position: relative;
+}
+
+/* iframe */
+.figma-frame iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+
+/* =========================
+   A4 / Print fallback
+   ========================= */
+
+@media print {
+  .figma-frame {
+    aspect-ratio: auto;
+    height: auto;
+  }
+
+  .figma-frame iframe {
+    display: none;
+  }
+
+  .figma-frame::after {
+    content: "Interactive prototype available online";
+    display: block;
+    padding: 1.5rem;
+    font-size: 0.9rem;
+    color: #555;
+    border: 1px dashed #ccc;
+  }
+}
+
+.embed-label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #666;
+  margin-bottom: 0.5rem;
+}
+
+.figma-frame {
+  max-height: 450px;
+}
+
+#anchorfunds-growth {
+  width: 100%;
+  margin: 0 auto; /* no top/bottom spacing */
+  font-family: 'SourceSansPro', sans-serif;
+}
+
+#anchorfunds-growth h2 {
+  /* text-align: center; */
+  margin: 0 0 1.25rem 0; /* only a small margin below heading */
+}
+
+.growth-chart {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem; /* smaller gap between rows */
+}
+
+.growth-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.growth-label {
+  flex: 1.5;
+  font-weight: 600;
+}
+
+.growth-bars {
+  flex: 3;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.bar {
+  height: 2.5rem;
+  border-radius: 1rem;
+  position: relative;
+  transition: width 0.6s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.bar-2025 {
+  background-color: var(--accent-primary);
+  width: calc(var(--value) / 15 * 100%);
+}
+
+.bar-2035 {
+  background-color: var(--accent-secondary);
+  width: calc(var(--value) / 15 * 100%);
+}
+
+.bar-text {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+
+.email-link {
+  color: var(--text-primary);          /* link color */
+  text-decoration: none;    /* remove underline */
+  font-weight: 500;         /* medium weight */
+  font-family: 'Source Sans Pro', sans-serif; /* optional */
+  transition: color 0.2s ease;
+}
+
+.email-link:hover {
+  color: var(--accent-primary);           /* darker on hover */
+}
+
+.email-link:active {
+  color: var(--accent-secondary);           /* darker on hover */
 }
